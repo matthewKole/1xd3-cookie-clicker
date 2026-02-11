@@ -1,14 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Soul Collector</title>
-    <link rel="icon" href="/images/soulClickerImage.webp" />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <header class="headerClicker">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soul Collector</title>
+  <link rel="icon" href="/images/soulClickerImage.webp" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/game.js"></script>
+</head>
+
+<body>
+  <container class="gameContainer">
+    
+    <div class="achievements">
+      <header id="achievementsHeader">Achievements</header>
+
+      <div id="achievementsBody">
+
+          <p> hello there</p>
+      </div>
+
+    </div>
+
+    <div class="mainArea">
+      
       <h1 class="gameTitle">Soul Collector</h1>
 
       <div class="soulDisplay">
@@ -16,8 +32,23 @@
       </div>
 
       <button id="button"></button>
-    </header>
 
-    <script src="/js/game.js"></script>
-  </body>
+    </div>
+
+    <div class="store">
+        <header id="storeHeader">Store</header>
+
+        <div id="storeBody">
+
+          <p> hello there</p>
+        </div>
+
+    </div>
+    
+
+  
+  </container>
+
+</body>
+
 </html>

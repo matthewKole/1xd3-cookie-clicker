@@ -8,13 +8,14 @@ html, body {
 }
 
 body {
-    background-image: url('/images/background.png'); 
+    
     background-size: cover; 
     background-repeat: no-repeat; 
     background-attachment: fixed;
     background-position: center;
     background-color: #0d0d0d; 
-    
+    background-image: url("../images/background.png"); 
+
     color: #e0e0e0;
     margin: 0;
     font-family: 'Georgia', serif; 
@@ -25,14 +26,14 @@ body {
     margin-bottom: 0;
 }
 
-.headerClicker{
+.mainArea{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    width: 100%;
     gap: 2rem;
+    width: 50%;
 }
 
 #button{
@@ -56,4 +57,55 @@ body {
 #scoreDisplay{
     font-size: 2.4rem;
 }
+
+.gameContainer{
+    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    width: 100%;
+
+}
+
+.achievements{
+    width: 25%;
+    background-color: seagreen;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px orange;
+}
+
+#achievementsHeader{
+    border: solid 1px blue;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#achievementsBody{
+    border: solid 1px blue;
+    flex-grow: 1;
+
+}
+
+.store{
+    width: 25%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px orange;
+}
+
+#storeHeader{
+    border: 1px solid blue;
+    text-align: center;
+    font-size: 2rem;
+}
+
+#storeBody{
+    border: 1px solid blue;
+    flex-grow: 1;
+
+}
+
 
