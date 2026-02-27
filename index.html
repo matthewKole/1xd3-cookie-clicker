@@ -1,54 +1,115 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SOUL HARVESTER</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>Hades</h1>
+    </header>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soul Collector</title>
-  <link rel="icon" href="/images/soulClickerImage.webp" />
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="js/game.js"></script>
-</head>
-
-<body>
-  <container class="gameContainer">
-    
-    <div class="achievements">
-      <header id="achievementsHeader">Achievements</header>
-
-      <div id="achievementsBody">
-
-          <p> hello there</p>
-      </div>
-
-    </div>
-
-    <div class="mainArea">
-      
-      <h1 class="gameTitle">Soul Collector</h1>
-
-      <div class="soulDisplay">
-        <span id="scoreDisplay">0</span>
-      </div>
-
-      <button id="button"></button>
-
-    </div>
-
-    <div class="store">
-        <header id="storeHeader">Store</header>
-
-        <div id="storeBody">
-
-          <p> hello there</p>
+    <main class="world-grid">
+      <section class="ui-panel left-panel">
+        <div class="counter-box">
+          <h3>SOULS COLLECTED</h3>
+          <span id="soul-count">0</span>
         </div>
 
-    </div>
-    
+        <div class="click-zone">
+          <div class="soul-pixel" id="target">
+            <img src="images/soulClickerImage.webp" alt="Soul Orb" />
+          </div>
+        </div>
 
-  
-  </container>
+        <button class="reap-trigger">REAP SOUL</button>
 
-</body>
+        <div class="stats-section">
+          <div class="stat-item">
+            <span class="stat-label">HARVEST RATE</span>
+            <span class="stat-value">+1 per click</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">POWER LEVEL</span>
+            <span class="stat-value">1</span>
+          </div>
+        </div>
 
+        <!-- progress bar removed per request -->
+      </section>
+
+      <section class="env-panel">
+        <img src="images/actualbi.jpg" alt="" />
+      </section>
+
+      <section class="ui-panel right-panel">
+        <h2 class="panel-label">UPGRADES</h2>
+        <div class="shop-list">
+          <div class="item-card available" id="upgrade-scythe">
+            <div class="item-icon scythe">
+              <img src="images/icon1.jpg" alt="" />
+            </div>
+            <div class="item-meta">
+              <span class="name">Scythe</span>
+              <span class="description">Increases clicking power</span>
+              <span class="cost">Cost: 15</span>
+            </div>
+            <div class="level-tag">LV.0</div>
+          </div>
+
+          <div class="item-card available" id="upgrade-spectral">
+            <div class="item-icon spectral">
+              <img src="images/icon2.jpg" alt="" />
+            </div>
+            <div class="item-meta">
+              <span class="name">NAme 2</span>
+              <span class="description"
+                >increeases automatic soul collection</span
+              >
+              <span class="cost">COST: 50</span>
+            </div>
+            <div class="level-tag">LV.0</div>
+          </div>
+
+          <div class="item-card locked" id="upgrade-pact">
+            <div class="item-icon pact">
+              <img src="images/icon3.jpg" alt="" />
+            </div>
+            <div class="item-meta">
+              <span class="name">Name 3</span>
+              <span class="description"
+                >multiplies automatic soul collection</span
+              >
+              <span class="cost">COST: 100</span>
+            </div>
+            <div class="level-tag">LV.0</div>
+          </div>
+
+          <div class="item-card locked" id="upgrade-rift">
+            <div class="item-icon rift">
+              <img src="images/icon4.jpg" alt="" />
+            </div>
+            <div class="item-meta">
+              <span class="name">NAme 4</span>
+              <span class="description">i dont know</span>
+              <span class="cost">COST: 500</span>
+            </div>
+            <div class="level-tag">LV.0</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="achievement-bar">
+      <div class="trophy-case">
+        <h5 class="achievement-title">ACHIEVEMENTS</h5>
+        <div class="achievement-grid"></div>
+      </div>
+    </footer>
+  </body>
 </html>

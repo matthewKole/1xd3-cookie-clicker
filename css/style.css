@@ -1,111 +1,407 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden; 
-    min-height: 100vh;
-    font-size: 62.5%;
+:root {
+    /* Dark Green & Grey Palette */
+    --bg-main: #182c25;       /* Very Dark Grey-Green */
+    --bg-panel: #121815;     /* Dark Green-Grey */
+    --soul-light: #21644e;   /* Muted Green */   /* Dark Forest Green */
+    --gold: #7a8a85;         /* Greyish Green */
+    --text: #d4dcd8;
+    --border: #3a4d44;
+    --accent-purple: #4a6f5f;
+    --accent-dark: #0a0d0a;
 }
+
+/* animations removed (per request) */
+
+* { box-sizing: border-box; image-rendering: pixelated; }
 
 body {
-    
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-attachment: fixed;
-    background-position: center;
-    background-color: #0d0d0d; 
-    background-image: url("../images/background.png"); 
-
-    color: #e0e0e0;
     margin: 0;
-    font-family: 'Georgia', serif; 
-}
-
-.gameTitle{
-    font-size: 3.5rem;
-    margin-bottom: 0;
-}
-
-.mainArea{
+    background-color: var(--bg-main);
+    color: var(--text);
+    font-family: 'Cinzel', serif;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+.top-bar {
+    overflow: hidden;
+    max-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-panel);
+    border-bottom: 4px solid #000;
+}
+
+.top-bar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pixel-skull {
+    width: 24px;
+    height: 24px;
+    background: var(--text);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+/* Layout Grid */
+.world-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+}
+
+.ui-panel {
+    background: var(--bg-panel);
+    border: 4px solid #000;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.left-panel { background: linear-gradient(135deg, #0f231c 0%, #172b23 100%); }
+.right-panel { background: linear-gradient(135deg, #12261d 0%, #172b23 100%); }
+
+/* The Soul Orb (Pixel Diamond) */
+.click-zone {
+    flex: 1;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    gap: 2rem;
-    width: 50%;
+    perspective: 1000px;
+    max-height: 50vh;
 }
 
-#button{
-    width: 20rem;           
-    height: 20rem;          
-    border-radius: 50%;     
-    filter: drop-shadow(0 0 20px #018001);
-    
-    background-image: url('../images/soulClickerImage.webp'); 
-    background-size: cover; 
-    background-position: center;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.1s; 
-}
-
-#button:active {
-    transform: scale(0.95);
-}
-
-#scoreDisplay{
-    font-size: 2.4rem;
-}
-
-.gameContainer{
-    
-    min-height: 100vh;
+.soul-pixel {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    cursor: default;
+    transition: none;
     display: flex;
-    flex-direction: row;
-    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.soul-pixel img{
+    border-radius: 100%;
+    box-shadow: #000;
+}
+
+.soul-pixel:hover {
+    
+}
+
+.soul-pixel:active {
+
+}
+
+.soul-pixel img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    display: block;
+}
+
+.inner-glare {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.8);
+    display: none; /* remove glare */
+}
+
+/* Environment - Center Column */
+.env-panel {
+    position: relative;
+    background: #11121d;
+    overflow: hidden;
+    max-height: 80vh;
+}
+
+.env-panel img {
     width: 100%;
-
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.achievements{
-    width: 25%;
-    background-color: seagreen;
+/* Counter & Info Sections */
+.counter-box {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(74, 111, 95, 0.15));
+    border: 3px solid var(--accent-purple);
+    padding: 15px;
+    text-align: center;
+    box-shadow: none;
+}
+
+.counter-box h3 {
+    margin: 0 0 8px 0;
+    font-size: 0.85rem;
+    color: var(--soul-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.counter-box #soul-count {
+    font-size: 2.5rem;
+    color: var(--gold);
+    font-weight: bold;
+    display: block;
+    text-shadow: none;
+}
+
+.stats-section {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(58, 77, 68, 0.2));
+    border: 2px solid var(--border);
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    border: solid 1px orange;
+    gap: 10px;
 }
 
-#achievementsHeader{
-    border: solid 1px blue;
-    font-size: 2rem;
-    text-align: center;
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 3px solid var(--soul-light);
 }
 
-#achievementsBody{
-    border: solid 1px blue;
-    flex-grow: 1;
-
+.stat-label {
+    font-size: 0.75rem;
+    color: #7a8a82;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
 }
 
-.store{
-    width: 25%;
-    background-color: red;
+.stat-value {
+    font-size: 0.9rem;
+    color: var(--soul-light);
+    font-weight: bold;
+}
+
+/* Panel Labels */
+.panel-label {
+    margin: 0 0 10px 0;
+    padding: 10px;
+    font-size: 0.95rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--gold);
+    font-weight: bold;
+    text-shadow: none;
+}
+
+/* Buttons & UI Cards */
+.reap-trigger {
+    background: var(--lava-warm);
+    border: 4px solid #000;
+    color: white;
+    padding: 18px;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 0 6px 0 rgba(0,0,0,0.3);
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.reap-trigger:hover {
+    background: #3d7a5f;
+    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 0 8px 0 rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+}
+
+.reap-trigger:active {
+    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.3);
+    transform: translateY(2px);
+}
+
+.item-card {
+    background: var(--bg-main);
+    border: 3px solid #000;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-card::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.item-card.available {
+    background: linear-gradient(135deg, #0f1714 0%, #1a2a20 100%);
+    border-color: #3a4d44;
+}
+
+.item-card.available:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(122, 138, 133, 0.3), inset 0 0 10px rgba(95, 190, 159, 0.1);
+    transform: translateX(4px);
+}
+
+.item-card.available:hover::before {
+    left: 100%;
+}
+
+.item-card.locked {
+    opacity: 0.4;
+    background: #0d1410;
+    border-color: #1a1a2e;
+    cursor: not-allowed;
+}
+
+.item-card.locked:hover {
+    border-color: #1a1a2e;
+    box-shadow: none;
+    transform: none;
+}
+
+.item-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    box-shadow: none;
+}
+
+.item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.item-meta {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    border: solid 1px orange;
+    font-size: 0.85rem;
+    gap: 3px;
 }
 
-#storeHeader{
-    border: 1px solid blue;
-    text-align: center;
-    font-size: 2rem;
+.item-meta .name {
+    font-weight: bold;
+    color: var(--soul-light);
+    font-size: 0.95rem;
 }
 
-#storeBody{
-    border: 1px solid blue;
-    flex-grow: 1;
-
+.item-meta .description {
+    color: #8a9a92;
+    font-size: 0.75rem;
+    font-style: italic;
 }
 
+.item-meta .cost {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
 
+.level-tag {
+    background: var(--accent-purple);
+    color: white;
+    padding: 4px 8px;
+    border: 1px solid #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    box-shadow: none;
+}
+
+/* Progress Bar */
+/* progress bar removed per request */
+
+/* Footer Achievements */
+.achievement-bar {
+    height: 100px;
+    background: var(--bg-panel);
+    border-top: 4px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.trophy-case {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.achievement-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--gold);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+    gap: 8px;
+}
+
+.slot {
+    width: 45px;
+    height: 45px;
+    background: #0a0a12;
+    border: 2px solid var(--border);
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.slot:hover {
+    border-color: var(--border);
+    /* no glow on hover */
+}
+
+.slot.earned {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(122, 138, 133, 0.05), rgba(95, 190, 159, 0.02));
+    box-shadow: none;
+}
