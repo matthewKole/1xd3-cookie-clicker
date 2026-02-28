@@ -92,6 +92,24 @@ window.addEventListener("load", function () {
         return upgrades.reduce((sum, u) => sum + u.owned, 0);
     }
 
+    /**
+     * Generates a floating text element above the click zone to show the amount of souls gained.
+     *
+     * @param {Number} amount - The number of souls gained
+     * @returns {void}
+     */
+    function spawnFloatText(amount) {
+        const zone = document.getElementById("click-zone");
+        const span = document.createElement("span");
+        span.className = "float-text";
+        span.textContent = "+" + amount;
+        zone.appendChild(span);
+
+        setTimeout(function () {
+            span.remove();
+        }, 1200);
+    }
+
     // ==================== GAME LOGIC ====================
 
     /**
@@ -102,6 +120,7 @@ window.addEventListener("load", function () {
     function handleClick() {
         souls += soulsPerClick;
         totalSoulsCollected += soulsPerClick;
+        spawnFloatText(soulsPerClick);
         updateDisplay();
         checkAchievements();
     }
