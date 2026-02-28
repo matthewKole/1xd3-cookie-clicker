@@ -3,7 +3,7 @@
 
     Date: February 27th 2026
 
-    Description: This is the JavaScript file for our clicker game "Soul Harvester". It contains the core game logic, including the model for tracking souls,
+    Description: This is the JavaScript file for our clicker game "hades". It contains the core game logic, including the model for tracking souls,
     upgrades, and achievements, as well as the view functions to update the display and handle user interactions. The game allows players to click to earn souls, 
     purchase upgrades to increase their soul harvesting, and unlock achievements based on their progress. The code is structured to be modular 
     and maintainable, with clear separation between the game logic and the user interface.
@@ -168,29 +168,25 @@ window.addEventListener("load", function () {
      * @returns {void}
      */
     function checkAchievements() {
-        achievements.forEach(function (ach) {
-
-            if (!ach.earned) {
-
-                if (ach.type === "auto") {
-                    const autoUpgrade = upgrades.find(u => u.type === "auto");
-                    // Check if total auto clicks per interval meets requirement
-                    if (autoUpgrade && autoUpgrade.owned * soulsPerClick >= ach.requirement) {
-                        ach.earned = true;
-                        showCongrats(ach.name + " Unlocked!");
-                    }
-                } else {
-                    if (souls >= ach.requirement) {
-                        ach.earned = true;
-                        showCongrats(ach.name + " Unlocked!");
-                    }
+    achievements.forEach(function (ach) {
+        if (!ach.earned) {
+            if (ach.type === "auto") {
+                const autoUpgrade = upgrades.find(u => u.type === "auto");
+                if (autoUpgrade && autoUpgrade.owned >= 1) {
+                    ach.earned = true;
+                    showCongrats(ach.name + " Unlocked!");
+                }
+            } else {
+                if (totalSoulsCollected >= ach.requirement) {
+                    ach.earned = true;
+                    showCongrats(ach.name + " Unlocked!");
                 }
             }
-        });
+        }
+    });
 
-        renderAchievements();
-    }
-
+    renderAchievements();
+}
     // ==================== VIEW ====================
 
     /**
