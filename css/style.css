@@ -9,43 +9,23 @@
 */
 
 :root {
-    /*
-     * COLOR PALETTE — Soul Harvester theme (dark green and grey)
-     */
+    /* BACKGROUNDS */
+    --bg-main: #0c1616;       /* Darkest background — body, item cards, achievement cards */
+    --bg-panel: #132422;      /* Slightly lighter — side panels, header, help overlay */
 
-    /* --- Backgrounds --- */
-    /* Main page background; used by body and as base for panels/cards. Keeps the overall screen dark. */
-    --bg-main: #0c1616;
+    /* ACCENTS */
+    --soul-light: #17c082;    /* Bright green — stat values, item names, stat-item left border, counter-box label */
+    --gold: #1b9c73;          /* Darker green — upgrade costs, panel titles, achievement title, available card hover */
 
-    /* Panel background for header, side panels, help content, counter boxes. Slightly lighter than bg-main for hierarchy. */
-    --bg-panel: #132422;
+    /* TEXT & BORDERS */
+    --text: #d0f2e3;          /* Light mint — main body text */
+    --border: #244741;        /* Dark teal — stats section border, slot borders */
 
-    /* --- Accent / Highlight colors --- */
-    /* Primary accent: labels (e.g. counter-box h3), stat values, item names, stat-item left border. “Soul” glow feel. */
-    --soul-light: #17c082;
-
-    /* Secondary accent: upgrade/achievement emphasis. Used for soul count, cost text, panel labels, achievement titles, available card borders/hover. */
-    --gold: #1b9c73;
-
-    /* --- Text & borders --- */
-    /* Default body text; high-contrast pale mint for readability on dark backgrounds. */
-    --text: #d0f2e3;
-
-    /* Subtle borders for stats section, slots; dark teal that doesn’t compete with content. */
-    --border: #244741;
-
-    /* --- UI chrome --- */
-    /* Buttons (help, close), level tags, counter-box border. Deep purple for contrast and consistency with dark theme. */
-    --accent-purple: #3a2c42;
-
-    /* Deepest shadow/dark; reserved for strong separation (e.g. behind panels). */
-    --accent-dark: #050908;
-
-    /* Headings and light text on dark (e.g. help overlay title/content, score display). Off-white for clarity. */
-    --white: #f5f5f5;
-
-    /* Primary action button (reap trigger). Warm teal; hover uses #3d7a5f for consistency. */
-    --lava-warm: #2d6b52;
+    /* UI ELEMENTS */
+    --accent-purple: #3a2c42; /* Dark purple — help button, close button, level tags, counter-box border, total souls display */
+    --accent-dark: #050908;   /* Near black — deep shadows behind panels */
+    --white: #f5f5f5;         /* Off white — help overlay headings and content text */
+    --lava-warm: #2d6b52;     /* Teal green — reap button background */
 }
 
 * { box-sizing: border-box; image-rendering: pixelated; }
