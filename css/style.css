@@ -28,27 +28,135 @@ body {
 /* Header */
 .top-bar {
     overflow: hidden;
-    max-height: 20vh;
+    height: 10%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* center h1 by default */
     background: var(--bg-panel);
     border-bottom: 4px solid #000;
+    
+    padding: 0 20px; /* some side padding */
 }
 
-.top-bar img {
+/* Center the h1 exactly in the middle regardless of button */
+.top-bar h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+/* Help button on the far right */
+.help-button {
+    margin-left: auto; /* push to far right */
+    position: relative; /* override absolute of h1 */
+    z-index: 1;
+    padding: 8px 16px;
+    background-color: var(--accent-purple);
+    color: white;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.help-button:hover {
+    background-color: #3d7a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+}
+
+.help-button:active {
+    transform: translateY(2px);
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+/* ==================== HELP OVERLAY ==================== */
+
+#helpOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    background: rgba(24, 44, 37, 0.95); /* semi-transparent dark */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* above all other elements */
+    padding: 20px;
 }
 
-.pixel-skull {
-    width: 24px;
-    height: 24px;
-    background: var(--text);
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+#helpOverlay.hidden {
+    display: none;
 }
+
+.help-content {
+    background: var(--bg-panel);
+    color: var(--text);
+    max-width: 600px;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow-y: auto;
+    max-height: 80%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#closeHelp {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-purple);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+#closeHelp:hover {
+    background: #3d7a5f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.3);
+}
+
+#closeHelp:active {
+    transform: translateY(2px);
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.3);
+}
+
+.help-content h2 {
+    margin-top: 0;
+    text-align: center;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-size: 1.3rem;
+}
+
+.help-content p, 
+.help-content ul {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+.help-content ul {
+    padding-left: 20px;
+}
+
+
 
 /* Layout Grid */
 .world-grid {
@@ -59,7 +167,6 @@ body {
 
 .ui-panel {
     background: var(--bg-panel);
-    border: 4px solid #000;
     margin: 10px;
     padding: 20px;
     display: flex;
@@ -127,16 +234,98 @@ body {
 .env-panel {
     position: relative;
     background: #11121d;
-    overflow: hidden;
-    max-height: 80vh;
+    border: 4px solid black;
+
+    display: flex;
+
+    flex-direction: column;
 }
 
 .env-panel img {
     width: 100%;
-    height: 100%;
+    height:70%;
     object-fit: cover;
     display: block;
+
 }
+
+/* Achievements Section */
+    
+.achievements-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    height: 30%;
+}
+
+.achievement-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.achievement-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 100%;
+}
+
+.achievement-card {
+     background-color: var(--bg-main);
+
+    color: #d4dcd8;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    height: 100%;
+}
+
+/* Message Area */
+.message-area {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.message-area.show {
+    opacity: 1;
+}
+
+.congrats-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #4ecdc4;
+    color: #121815;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.congrats-popup.hidden {
+    display: none;
+}
+
+
+
 
 /* Counter & Info Sections */
 .counter-box {
@@ -341,27 +530,6 @@ body {
     box-shadow: none;
 }
 
-/* Progress Bar */
-/* progress bar removed per request */
-
-/* Footer Achievements */
-.achievement-bar {
-    height: 100px;
-    background: var(--bg-panel);
-    border-top: 4px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-}
-
-.trophy-case {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
 .achievement-title {
     font-size: 0.9rem;
@@ -378,6 +546,13 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
     gap: 8px;
 }
+
+.achievement-description{
+    font-size: 0.75rem;
+    color: #8a9a92;
+    margin-top: 4px;
+}
+
 
 .slot {
     width: 45px;

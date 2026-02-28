@@ -1,115 +1,178 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SOUL HARVESTER</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header class="top-bar">
-      <h1>Hades</h1>
-    </header>
 
-    <main class="world-grid">
-      <section class="ui-panel left-panel">
-        <div class="counter-box">
-          <h3>SOULS COLLECTED</h3>
-          <span id="soul-count">0</span>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>SOUL HARVESTER</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <script src="js/game.js"></script>
+</head>
 
-        <div class="click-zone">
-          <div class="soul-pixel" id="target">
-            <img src="images/soulClickerImage.webp" alt="Soul Orb" />
-          </div>
-        </div>
+<body>
+  <header class="top-bar">
+    <h1>Hades</h1>
+    <button id="helpButton" class="help-button">Help</button>
+  </header>
 
-        <button class="reap-trigger">REAP SOUL</button>
-
-        <div class="stats-section">
-          <div class="stat-item">
-            <span class="stat-label">HARVEST RATE</span>
-            <span class="stat-value">+1 per click</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">POWER LEVEL</span>
-            <span class="stat-value">1</span>
-          </div>
-        </div>
-
-        <!-- progress bar removed per request -->
-      </section>
-
-      <section class="env-panel">
-        <img src="images/actualbi.jpg" alt="" />
-      </section>
-
-      <section class="ui-panel right-panel">
-        <h2 class="panel-label">UPGRADES</h2>
-        <div class="shop-list">
-          <div class="item-card available" id="upgrade-scythe">
-            <div class="item-icon scythe">
-              <img src="images/icon1.jpg" alt="" />
-            </div>
-            <div class="item-meta">
-              <span class="name">Scythe</span>
-              <span class="description">Increases clicking power</span>
-              <span class="cost">Cost: 15</span>
-            </div>
-            <div class="level-tag">LV.0</div>
-          </div>
-
-          <div class="item-card available" id="upgrade-spectral">
-            <div class="item-icon spectral">
-              <img src="images/icon2.jpg" alt="" />
-            </div>
-            <div class="item-meta">
-              <span class="name">NAme 2</span>
-              <span class="description"
-                >increeases automatic soul collection</span
-              >
-              <span class="cost">COST: 50</span>
-            </div>
-            <div class="level-tag">LV.0</div>
-          </div>
-
-          <div class="item-card locked" id="upgrade-pact">
-            <div class="item-icon pact">
-              <img src="images/icon3.jpg" alt="" />
-            </div>
-            <div class="item-meta">
-              <span class="name">Name 3</span>
-              <span class="description"
-                >multiplies automatic soul collection</span
-              >
-              <span class="cost">COST: 100</span>
-            </div>
-            <div class="level-tag">LV.0</div>
-          </div>
-
-          <div class="item-card locked" id="upgrade-rift">
-            <div class="item-icon rift">
-              <img src="images/icon4.jpg" alt="" />
-            </div>
-            <div class="item-meta">
-              <span class="name">NAme 4</span>
-              <span class="description">i dont know</span>
-              <span class="cost">COST: 500</span>
-            </div>
-            <div class="level-tag">LV.0</div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="achievement-bar">
-      <div class="trophy-case">
-        <h5 class="achievement-title">ACHIEVEMENTS</h5>
-        <div class="achievement-grid"></div>
+  <main class="world-grid">
+    <section class="ui-panel left-panel">
+      <div class="counter-box">
+        <h3>SOULS COLLECTED</h3>
+        <span id="scoreDisplay">0</span>
       </div>
-    </footer>
-  </body>
+
+      <div class="click-zone">
+        <div class="soul-pixel" id="clickArea">
+          <img src="images/soulClickerImage.webp" alt="Soul Orb" />
+        </div>
+      </div>
+
+      <button class="reap-trigger" id="reapButton">REAP SOUL</button>
+
+      <div class="stats-section">
+        <div class="stat-item">
+          <span class="stat-label">HARVEST RATE</span>
+          <span class="stat-value" id="soulsPerClickDisplay">1</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">POWER LEVEL</span>
+          <span class="stat-value" id="totalUpgradesDisplay">0</span>
+        </div>
+      </div>
+
+
+    </section>
+
+    <section class="env-panel">
+      <img src="images/actualbi.jpg" alt="" />
+
+      <div class="achievements-container">
+        <h3 class="achievement-title">Achievements</h3>
+
+        <div id="achievementsContainer" class="achievement-grid">
+          <div class="achievement-card">
+            <span class="name">First Soul</span>
+
+          </div>
+          <div class="achievement-card">
+            <span class="name">Novice Harvester</span>
+
+          </div>
+          <div class="achievement-card">
+            <span class="name">Automation</span>
+
+          </div>
+          <div class="achievement-card">
+            <span class="name">Underworld</span>
+
+          </div>
+          <div class="achievement-card">
+            <span class="name">Soul King</span>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="messageArea" class="message-area"></div>
+      <div id="congratsPopup" class="congrats-popup hidden"></div>
+
+    </section>
+
+    <section class="ui-panel right-panel">
+      <h2 class="panel-label">UPGRADES</h2>
+
+      <div class="shop-list">
+        <div class="item-card available" id="upgrade-scythe">
+          <div class="item-icon scythe">
+            <img src="images/icon1.jpg" alt="" />
+          </div>
+          <div class="item-meta">
+            <span class="name">Scythe</span>
+            <span class="description">+1 souls per click </span>
+            <span class="cost"></span>
+          </div>
+          <div class="level-tag"></div>
+        </div>
+
+        <div class="item-card available" id="upgrade-spectral">
+          <div class="item-icon spectral">
+            <img src="images/icon2.jpg" alt="" />
+          </div>
+          <div class="item-meta">
+            <span class="name">Charon</span>
+            <span class="description">+5 souls per click </span>
+            <span class="cost"></span>
+          </div>
+          <div class="level-tag"></div>
+        </div>
+
+        <div class="item-card locked" id="upgrade-pact">
+          <div class="item-icon pact">
+            <img src="images/icon3.jpg" alt="" />
+          </div>
+          <div class="item-meta">
+            <span class="name">Dark Mage</span>
+            <span class="description">+20 souls per click </span>
+            <span class="cost"></span>
+          </div>
+          <div class="level-tag"></div>
+        </div>
+
+        <div class="item-card locked" id="upgrade-rift">
+          <div class="item-icon rift">
+            <img src="images/icon4.jpg" alt="" />
+          </div>
+          <div class="item-meta">
+            <span class="name">Flock of Ravens</span>
+            <span class="description">Automatic soul collection</span>
+            <span class="cost"></span>
+          </div>
+          <div class="level-tag"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- HELP OVERLAY -->
+  <div id="helpOverlay" class="hidden">
+    <div class="help-content">
+      <button id="closeHelp">&times;</button>
+      <h2>How to Play</h2>
+      <p>Welcome to <strong>Soul Harvester</strong>! Your goal is to collect as many souls as possible. Click the Soul
+        Orb or use upgrades to increase your harvest rate.</p>
+
+      <h3>Controls</h3>
+      <ul>
+        <li><strong>Click Soul Orb:</strong> Collect souls manually.</li>
+        <li><strong>REAP SOUL button:</strong> Reap collected souls.</li>
+        <li><strong>Upgrades:</strong> Purchase to increase souls per click or automate collection.</li>
+      </ul>
+
+      <h3>Upgrades & Rewards</h3>
+      <ul>
+        <li><strong>Scythe:</strong> +1 soul per click</li>
+        <li><strong>Charon:</strong> +5 souls per click</li>
+        <li><strong>Dark Mage:</strong> +20 souls per click</li>
+        <li><strong>Flock of Ravens:</strong> Automatic soul collection</li>
+      </ul>
+
+      <h3>Achievements</h3>
+      <ul>
+        <li><strong>First Soul:</strong> Collect your first soul</li>
+        <li><strong>Novice Harvester:</strong> Collect 50 souls</li>
+        <li><strong>Automation:</strong> Unlock automatic soul collection</li>
+        <li><strong>Underworld:</strong> Reach power level 50</li>
+        <li><strong>Soul King:</strong> Reach power level 100</li>
+      </ul>
+
+      <p>Click the <strong>&times;</strong> button to close this help screen.</p>
+    </div>
+  </div>
+
+
+
+</body>
+    
 </html>
