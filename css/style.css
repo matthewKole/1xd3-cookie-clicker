@@ -9,18 +9,44 @@
 */
 
 :root {
-    /* Dark Green & Grey Palette */
-    --bg-main: #182c25;       /* Very Dark Grey-Green */
-    --bg-panel: #121815;     /* Dark Green-Grey */
-    --soul-light: #21644e;   /* Muted Green */   /* Dark Forest Green */
-    --gold: #7a8a85;         /* Greyish Green */
-    --text: #d4dcd8;
-    --border: #3a4d44;
-    --accent-purple: #4a6f5f;
-    --accent-dark: #0a0d0a;
-}
+    /*
+     * COLOR PALETTE — Soul Harvester theme (dark green and grey)
+     */
 
-/* animations removed (per request) */
+    /* --- Backgrounds --- */
+    /* Main page background; used by body and as base for panels/cards. Keeps the overall screen dark. */
+    --bg-main: #0c1616;
+
+    /* Panel background for header, side panels, help content, counter boxes. Slightly lighter than bg-main for hierarchy. */
+    --bg-panel: #132422;
+
+    /* --- Accent / Highlight colors --- */
+    /* Primary accent: labels (e.g. counter-box h3), stat values, item names, stat-item left border. “Soul” glow feel. */
+    --soul-light: #17c082;
+
+    /* Secondary accent: upgrade/achievement emphasis. Used for soul count, cost text, panel labels, achievement titles, available card borders/hover. */
+    --gold: #1b9c73;
+
+    /* --- Text & borders --- */
+    /* Default body text; high-contrast pale mint for readability on dark backgrounds. */
+    --text: #d0f2e3;
+
+    /* Subtle borders for stats section, slots; dark teal that doesn’t compete with content. */
+    --border: #244741;
+
+    /* --- UI chrome --- */
+    /* Buttons (help, close), level tags, counter-box border. Deep purple for contrast and consistency with dark theme. */
+    --accent-purple: #3a2c42;
+
+    /* Deepest shadow/dark; reserved for strong separation (e.g. behind panels). */
+    --accent-dark: #050908;
+
+    /* Headings and light text on dark (e.g. help overlay title/content, score display). Off-white for clarity. */
+    --white: #f5f5f5;
+
+    /* Primary action button (reap trigger). Warm teal; hover uses #3d7a5f for consistency. */
+    --lava-warm: #2d6b52;
+}
 
 * { box-sizing: border-box; image-rendering: pixelated; }
 
@@ -41,7 +67,7 @@ body {
     height: 10%;
     display: flex;
     align-items: center;
-    justify-content: center; /* center h1 by default */
+    justify-content: center;
     background: var(--bg-panel);
     border-bottom: 4px solid #000;
     
@@ -92,7 +118,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(24, 44, 37, 0.95); /* semi-transparent dark */
+    background: rgba(2, 53, 35, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,10 +130,14 @@ body {
     display: none;
 }
 
+.help-title{
+    color: var(--white);
+}
+
 .help-content {
     background: var(--bg-panel);
-    color: var(--text);
-    max-width: 600px;
+    color: var(--white);
+    max-width: 700px;
     width: 100%;
     padding: 30px 20px;
     border-radius: 10px;
@@ -137,7 +167,7 @@ body {
 }
 
 #closeHelp:hover {
-    background: #3d7a5f;
+    background: blu;
     transform: translateY(-2px);
     box-shadow: 0 4px 0 rgba(0,0,0,0.3);
 }
@@ -188,7 +218,7 @@ body {
 .left-panel { background: linear-gradient(135deg, #0f231c 0%, #172b23 100%); }
 .right-panel { background: linear-gradient(135deg, #12261d 0%, #172b23 100%); }
 
-/* The Soul Orb (Pixel Diamond) */
+/* The Soul Orb */
 .click-zone {
     flex: 1;
     display: flex;
@@ -196,6 +226,20 @@ body {
     align-items: center;
     perspective: 1000px;
     max-height: 50vh;
+}
+
+#scoreDisplay {
+    font-size: 2.5rem;
+    color: whitesmoke;
+    margin-top: 10px;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+@keyframes soulGlow {
+    0%   { box-shadow: 0 0 10px 5px rgba(23, 192, 130, 0.3); }
+    50%  { box-shadow: 0 0 25px 15px rgba(23, 192, 130, 0.7); }
+    100% { box-shadow: 0 0 10px 5px rgba(23, 192, 130, 0.3); }
 }
 
 .soul-pixel {
@@ -208,6 +252,9 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    scale: 1.5;
+    border-radius: 50%;
+    animation: soulGlow 3.5s ease-in-out infinite;
     transition: transform 0.1s ease;
 }
 
@@ -217,12 +264,12 @@ body {
 }
 
 .soul-pixel:active {
-  transform: scale(1.5); 
+  transform: scale(1.2); 
 }
 
 .soul-pixel img {
-    width: 85%;
-    height: 85%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     display: block;
 }
@@ -250,7 +297,7 @@ body {
 
 .env-panel img {
     width: 100%;
-    height:70%;
+    height:83%;
     object-fit: cover;
     display: block;
 
@@ -282,8 +329,7 @@ body {
 }
 
 .achievement-card {
-     background-color: var(--bg-main);
-
+    background-color: var(--bg-main);
     color: #d4dcd8;
     padding: 10px;
     text-align: center;
@@ -458,7 +504,7 @@ body {
 }
 
 .item-card.available {
-    background: linear-gradient(135deg, #0f1714 0%, #1a2a20 100%);
+    background: linear-gradient(135deg, #0f1714 0%, #1a2a20 100%); /* Dark greens — “affordable” upgrade card */
     border-color: #3a4d44;
 }
 
@@ -475,7 +521,7 @@ body {
 .item-card.locked {
     opacity: 0.4;
     background: #0d1410;
-    border-color: #1a1a2e;
+    border-color: #1a1a2e; /* Dark blue-grey — “disabled” border */
     cursor: not-allowed;
 }
 
@@ -530,7 +576,7 @@ body {
     background: var(--accent-purple);
     color: white;
     padding: 4px 8px;
-    border: 1px solid #000;
+    border: 1px solid #000; /* Black — outline for “Lv N” badge */
     font-size: 0.75rem;
     font-weight: bold;
     flex-shrink: 0;
@@ -560,6 +606,11 @@ body {
     margin-top: 4px;
 }
 
+.achievement-card{
+    background-color: #12261d;
+    opacity: 0.4;
+}
+
 
 .slot {
     width: 45px;
@@ -578,7 +629,6 @@ body {
 
 .slot:hover {
     border-color: var(--border);
-    /* no glow on hover */
 }
 
 .slot.earned {

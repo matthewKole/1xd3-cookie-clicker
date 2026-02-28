@@ -198,6 +198,7 @@ window.addEventListener("load", function () {
     function updateDisplay() {
         document.getElementById("scoreDisplay").textContent = souls;
         document.getElementById("soulsPerClickDisplay").textContent = soulsPerClick;
+        document.getElementById("soulsPerSecond").textContent = soulsPerClick * upgrades.find(u => u.type === "auto").owned;
         document.getElementById("totalUpgradesDisplay").textContent = getTotalUpgrades();
 
         renderUpgrades();
@@ -241,6 +242,11 @@ window.addEventListener("load", function () {
         achievements.forEach(function (ach) {
             const div = document.createElement("div");
             div.className = "achievement-card";
+
+            div.className = "achievement-card";
+            if (ach.earned) {
+                div.style.opacity = "1";
+            }
 
             // Add achievement name on top and description below
             div.innerHTML = `

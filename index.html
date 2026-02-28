@@ -12,12 +12,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>SOUL HARVESTER</title>
+    <title>Soul Harvester</title>
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="icon" href="images/soulClickerImage.webp" />
+
     <script src="js/game.js"></script>
   </head>
 
@@ -44,8 +47,12 @@
 
         <div class="stats-section">
           <div class="stat-item">
-            <span class="stat-label">HARVEST RATE</span>
+            <span class="stat-label">SOULS PER CLICK: </span>
             <span class="stat-value" id="soulsPerClickDisplay">1</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">SOULS PER SECOND: </span>
+            <span class="stat-value" id="soulsPerSecond">0</span>
           </div>
           <div class="stat-item">
             <span class="stat-label">POWER LEVEL</span>
@@ -55,7 +62,7 @@
       </section>
 
       <section class="env-panel">
-        <img src="images/actualbi.jpg" alt="" />
+        <img src="images/actualbilikeactually.png" alt="" />
 
         <div class="achievements-container">
           <h3 class="achievement-title">Achievements</h3>
@@ -129,7 +136,10 @@
             </div>
             <div class="item-meta">
               <span class="name">Flock of Ravens</span>
-              <span class="description">Automatic soul collection</span>
+              <span class="description"
+                >Automaticly collects souls equal to clicking power per
+                second</span
+              >
               <span class="cost"></span>
             </div>
             <div class="level-tag"></div>
@@ -142,7 +152,7 @@
     <div id="helpOverlay" class="hidden">
       <div class="help-content">
         <button id="closeHelp">&times;</button>
-        <h2>How to Play</h2>
+        <h2 class="help-title">How to Play</h2>
         <p>
           Welcome to <strong>Soul Harvester</strong>! Your goal is to collect as
           many souls as possible. Click the Soul Orb or use upgrades to increase
