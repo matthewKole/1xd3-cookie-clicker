@@ -14,6 +14,7 @@ window.addEventListener("load", function () {
     // ==================== MODEL ====================
 
     let souls = 0;
+    let totalSoulsCollected = 0;
     let soulsPerClick = 1;
     let autoIntervalId = null;
 
@@ -100,6 +101,7 @@ window.addEventListener("load", function () {
      */
     function handleClick() {
         souls += soulsPerClick;
+        totalSoulsCollected += soulsPerClick;
         updateDisplay();
         checkAchievements();
     }
@@ -152,6 +154,7 @@ window.addEventListener("load", function () {
         autoIntervalId = setInterval(() => {
             // Total auto clicks = current soulsPerClick × number of auto upgrades
             souls += soulsPerClick * autoUpgrade.owned;
+            totalSoulsCollected += soulsPerClick * autoUpgrade.owned;
             updateDisplay();
             checkAchievements();
         }, interval);
@@ -197,6 +200,7 @@ window.addEventListener("load", function () {
      */
     function updateDisplay() {
         document.getElementById("scoreDisplay").textContent = souls;
+        document.getElementById("totalSoulsCollected").textContent = "Total Souls Collected: " + totalSoulsCollected;
         document.getElementById("soulsPerClickDisplay").textContent = soulsPerClick;
         document.getElementById("soulsPerSecond").textContent = soulsPerClick * upgrades.find(u => u.type === "auto").owned;
         document.getElementById("totalUpgradesDisplay").textContent = getTotalUpgrades();

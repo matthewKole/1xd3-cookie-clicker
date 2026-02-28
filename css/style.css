@@ -82,6 +82,22 @@ body {
     margin: 0;
 }
 
+/* Total Souls collected */
+#totalSoulsCollected {
+    position: absolute;
+    left: 0;
+    margin-left: 1rem;
+    z-index: 1;
+    padding: 8px 16px;
+    background-color: var(--accent-purple);
+    color: white;
+    border: 2px solid #000;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
 /* Help button on the far right */
 .help-button {
     margin-left: auto; /* push to far right */
@@ -118,7 +134,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(2, 53, 35, 0.95);
+    background: rgba(7, 36, 25, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
