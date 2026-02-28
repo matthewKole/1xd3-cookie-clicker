@@ -1,3 +1,13 @@
+/* Author Caden Chan, Matthew Kolesnik  
+
+    Date: February 27th 2026
+
+    Description: This is the CSS file for our clicker game "Soul Harvester". It defines the visual style and layout of the game, 
+    including colors, fonts, and the arrangement of elements on the screen. The design is inspired by a dark, mystical theme 
+    with a focus on greens and greys. The CSS includes styles for the main game area, panels, buttons, 
+    and the help overlay, we created a visually simple interface that makes the gameplay intuitive and engaging.
+*/
+
 :root {
     /* Dark Green & Grey Palette */
     --bg-main: #182c25;       /* Very Dark Grey-Green */
@@ -198,6 +208,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: transform 0.1s ease;
 }
 
 .soul-pixel img{
@@ -205,12 +216,8 @@ body {
     box-shadow: #000;
 }
 
-.soul-pixel:hover {
-    
-}
-
 .soul-pixel:active {
-
+  transform: scale(1.5); 
 }
 
 .soul-pixel img {

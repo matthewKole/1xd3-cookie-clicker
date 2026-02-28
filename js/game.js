@@ -3,16 +3,11 @@
 
     Date: February 27th 2026
 
-
-    
-
-
-
+    Description: This is the JavaScript file for our clicker game "Soul Harvester". It contains the core game logic, including the model for tracking souls,
+    upgrades, and achievements, as well as the view functions to update the display and handle user interactions. The game allows players to click to earn souls, 
+    purchase upgrades to increase their soul harvesting, and unlock achievements based on their progress. The code is structured to be modular 
+    and maintainable, with clear separation between the game logic and the user interface.
 */
-
-
-
-
 
 window.addEventListener("load", function () {
 
@@ -75,24 +70,46 @@ window.addEventListener("load", function () {
 
     // ==================== HELPERS ====================
 
+    /**
+     * Calculates the current cost to buy the next level of an upgrade based on base price, growth rate, and number already owned.
+     *
+     * @param {Object} upgrade - The upgrade object with basePrice, growth, and owned properties
+     * @returns {Number} The integer cost in souls for the next purchase
+     */
     function calculateCost(upgrade) {
         return Math.floor(
             upgrade.basePrice * Math.pow(upgrade.growth, upgrade.owned)
         );
     }
 
+    /**
+     * Returns the total number of upgrade levels owned across all upgrade types.
+     *
+     * @returns {Number} Total count of all owned upgrade levels
+     */
     function getTotalUpgrades() {
         return upgrades.reduce((sum, u) => sum + u.owned, 0);
     }
 
     // ==================== GAME LOGIC ====================
 
+    /**
+     * Handles a click on the reap/cookie area: adds souls per click to total souls, then updates the display and checks achievements.
+     *
+     * @returns {void}
+     */
     function handleClick() {
         souls += soulsPerClick;
         updateDisplay();
         checkAchievements();
     }
 
+    /**
+     * Attempts to purchase one level of an upgrade by id. Deducts souls, increments owned count, applies click or auto effect, and updates display/achievements if affordable.
+     *
+     * @param {String} id - The upgrade id (e.g. "scythe", "spectral", "pact", "rift")
+     * @returns {void}
+     */
     function buyUpgrade(id) {
         const upgrade = upgrades.find(u => u.id === id);
         const cost = calculateCost(upgrade);
@@ -117,6 +134,11 @@ window.addEventListener("load", function () {
         }
     }
 
+    /**
+     * Starts or restarts the auto soul-generation timer. Clears any existing interval, then sets a new one based on owned auto upgrades (interval shortens with more levels).
+     *
+     * @returns {void}
+     */
     function startAutoSystem() {
         if (autoIntervalId) clearInterval(autoIntervalId); // reset timer
 
@@ -137,6 +159,11 @@ window.addEventListener("load", function () {
 
     // ==================== ACHIEVEMENTS ====================
 
+    /**
+     * Checks all achievements; marks any newly met as earned, shows a congrats popup, and re-renders the achievements list.
+     *
+     * @returns {void}
+     */
     function checkAchievements() {
         achievements.forEach(function (ach) {
 
@@ -163,6 +190,11 @@ window.addEventListener("load", function () {
 
     // ==================== VIEW ====================
 
+    /**
+     * Updates the main game display: score, souls per click, total upgrades count, and the upgrade cards.
+     *
+     * @returns {void}
+     */
     function updateDisplay() {
         document.getElementById("scoreDisplay").textContent = souls;
         document.getElementById("soulsPerClickDisplay").textContent = soulsPerClick;
@@ -171,6 +203,11 @@ window.addEventListener("load", function () {
         renderUpgrades();
     }
 
+    /**
+     * Renders all upgrade cards in the DOM: updates cost, level, and locked/available styling based on current souls.
+     *
+     * @returns {void}
+     */
     function renderUpgrades() {
         upgrades.forEach(function (upgrade) {
             const card = document.getElementById("upgrade-" + upgrade.id);
@@ -192,6 +229,11 @@ window.addEventListener("load", function () {
         });
     }
 
+    /**
+     * Rebuilds the achievements list in the DOM: creates a card for each achievement with name, description, and earned state.
+     *
+     * @returns {void}
+     */
     function renderAchievements() {
         const container = document.getElementById("achievementsContainer");
         container.innerHTML = "";
@@ -206,15 +248,18 @@ window.addEventListener("load", function () {
             <div class="achievement-description">
                 ${ach.type === "auto" ? "Buy Flock of Ravens" : `Souls needed: ${ach.requirement}`}
             </div>
-            ${ach.earned ? '<div class="earned-check">✔</div>' : ''}
-        `;
+            ${ach.earned ? '<div class="earned-check">✔</div>' : ''}`;
 
             container.appendChild(div);
         });
     }
 
-
-
+    /**
+     * Shows a congratulations popup with the given message, then hides it after 2.5 seconds.
+     *
+     * @param {String} message - The text to display in the popup (e.g. "First Soul Unlocked!")
+     * @returns {void}
+     */
     function showCongrats(message) {
         const popup = document.getElementById("congratsPopup");
         popup.textContent = message;
