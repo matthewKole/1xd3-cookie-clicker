@@ -30,28 +30,32 @@
 
 * { box-sizing: border-box; image-rendering: pixelated; }
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     background-color: var(--bg-main);
     color: var(--text);
     font-family: 'Cinzel', serif;
     height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-/* Header */
+/* Header — never shrinks so it stays visible on all aspect ratios */
 .top-bar {
-    overflow: hidden;
+    flex-shrink: 0;
+    min-height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--bg-panel);
     border-bottom: 4px solid #000;
-    height: 10%;
-    overflow: hidden;
-    padding: 0 20px; /* some side padding */
+    padding: 0 20px;
 }
 
 /* Center the h1 exactly in the middle regardless of button */
@@ -194,17 +198,20 @@ body {
 
 
 
-/* Layout Grid */
+/* Layout Grid — takes remaining viewport height; min-height 0 allows it to shrink and avoid cropping header */
 .world-grid {
-    flex: 1;
+    flex: 1 1 0;
+    min-height: 0;
     display: grid;
     grid-template-columns: 280px 1fr 280px;
+    overflow: hidden;
 }
 
 .ui-panel {
     background: var(--bg-panel);
     margin: 10px;
     padding: 20px;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -306,30 +313,31 @@ body {
 /* Environment - Center Column */
 .env-panel {
     position: relative;
+    min-height: 0;
     background: #11121d;
     border: 4px solid black;
-
     display: flex;
-
     flex-direction: column;
 }
 
 .env-panel img {
     width: 100%;
-    height:83%;
+    flex: 1 1 0;
+    min-height: 0;
     object-fit: cover;
     display: block;
-
 }
 
 /* Achievements Section */
     
 .achievements-container {
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    height: 30%;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 .achievement-title {
