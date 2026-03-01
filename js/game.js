@@ -113,7 +113,7 @@ window.addEventListener("load", function () {
     // ==================== GAME LOGIC ====================
 
     /**
-     * Handles a click on the reap/cookie area: adds souls per click to total souls, then updates the display and checks achievements.
+     * Handles a click on the cookie area: adds souls per click to total souls, then updates the display and checks achievements.
      *
      * @returns {void}
      */
@@ -273,7 +273,7 @@ window.addEventListener("load", function () {
             <div class="achievement-description">
                 ${ach.type === "auto" ? "Buy Flock of Ravens" : `Souls needed: ${ach.requirement}`}
             </div>
-            ${ach.earned ? '<div class="earned-check">✔</div>' : ''}`;
+            ${ach.earned ? '<div class="earned-check"><img src="images/pixelTrophyTransparent.png" alt="trophy"></div>' : ''}`;
 
             container.appendChild(div);
         });
@@ -298,9 +298,6 @@ window.addEventListener("load", function () {
     // ==================== EVENT LISTENERS ====================
 
     document.getElementById("clickArea")
-        .addEventListener("click", handleClick);
-
-    document.getElementById("reapButton")
         .addEventListener("click", handleClick);
 
     upgrades.forEach(function (upgrade) {

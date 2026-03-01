@@ -25,7 +25,7 @@
     --accent-purple: #3a2c42; /* Dark purple — help button, close button, level tags, counter-box border, total souls display */
     --accent-dark: #050908;   /* Near black — deep shadows behind panels */
     --white: #f5f5f5;         /* Off white — help overlay headings and content text */
-    --lava-warm: #2d6b52;     /* Teal green — reap button background */
+    --lava-warm: #2d6b52;     /* Teal green */
 }
 
 * { box-sizing: border-box; image-rendering: pixelated; }
@@ -44,13 +44,13 @@ body {
 /* Header */
 .top-bar {
     overflow: hidden;
-    height: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--bg-panel);
     border-bottom: 4px solid #000;
-    
+    height: 10%;
+    overflow: hidden;
     padding: 0 20px; /* some side padding */
 }
 
@@ -470,33 +470,6 @@ body {
     text-shadow: none;
 }
 
-/* Buttons & UI Cards */
-.reap-trigger {
-    background: var(--lava-warm);
-    border: 4px solid #000;
-    color: white;
-    padding: 18px;
-    font-weight: bold;
-    font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 0 6px 0 rgba(0,0,0,0.3);
-    transition: all 0.1s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.reap-trigger:hover {
-    background: #3d7a5f;
-    box-shadow: inset -4px -4px 0px rgba(0,0,0,0.3), 0 8px 0 rgba(0,0,0,0.4);
-    transform: translateY(-2px);
-}
-
-.reap-trigger:active {
-    box-shadow: inset 4px 4px 0px rgba(0,0,0,0.3);
-    transform: translateY(2px);
-}
-
 .item-card {
     background: var(--bg-main);
     border: 3px solid #000;
@@ -655,4 +628,18 @@ body {
     border-color: var(--gold);
     background: linear-gradient(135deg, rgba(122, 138, 133, 0.05), rgba(95, 190, 159, 0.02));
     box-shadow: none;
+}
+
+/* Image formatter */
+.earned-check {
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.earned-check img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
 }
